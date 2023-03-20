@@ -1,0 +1,13 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Bahnschrift",sans-serif;
+}
+
+.container{
+    border: 1px solid #000;
+}

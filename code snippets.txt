@@ -1,0 +1,81 @@
+// for fetching data from the database and show in the row
+
+<div class="container">
+<div class="row">
+    <?php    
+    include ("connection.php");
+    $sql = "select * from products";
+    $result = mysqli_query($con,$sql);
+    while ($row = $result->fetch_assoc()){
+    ?>
+    <div class="col-lg-3">
+        <div class="card" style="width: 18rem;">
+            <img src="<?php  echo $row['Pimage'] ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><?php  echo $row['Pname'] ?></h5>
+                <p class="card-text"><?php  echo $row['Pdesc'] ?></p>
+                <P><?php  echo $row['Pprice'] ?>PKR</P>
+                <a href="#" class="btn btn-warning">ADD To Cart</a>
+            </div>
+        </div>
+    </div>
+    <?php
+    }
+    ?>
+</div>
+
+// another code snippet for fetching the data from the database and showing in page
+
+<div class="container">
+<div class="row">
+    <?php    
+    include ("connection.php");
+    $sql = "select * from products";
+    $result = mysqli_query($con,$sql);
+    while ($row = $result->fetch_assoc()){
+    ?>
+    <div class="col-lg-3">
+        <div class="card" style="width: 18rem;">
+            <img src="<?php  echo $row['Pimage'] ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><?php  echo $row['Pname'] ?></h5>
+                <p class="card-text"><?php  echo $row['Pdesc'] ?></p>
+                <P><?php  echo $row['Pprice'] ?>PKR</P>
+                <a href="#" class="btn btn-warning">ADD To Cart</a>
+            </div>
+        </div>
+    </div>
+    <?php
+    }
+    ?>
+</div>
+
+// insert image in the database 
+
+CREATE TABLE files (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    file_data MEDIUMBLOB NOT NULL
+);
+
+<form name="file" action="filedb.php" method="post" enctype="multipart/form-data">
+   <input type="file" name="file" value="" />
+   <input type="submit" name="Upload" value="Upload">
+</form>
+
+// This is the file we're going to add it in the database
+$MY_FILE = $_FILES['file']['tmp_name'];
+ 
+// To open the file and store its contents in $file_contents
+$file = fopen($MY_FILE, 'r');
+$file_contents = fread($file, filesize($MY_FILE));
+fclose($file);
+/* We need to escape some stcharacters that might appear in  file_contents,so do that now, before we begin the query.*/
+ 
+$file_contents = addslashes($file_contents);
+ 
+// To add the file in the database
+mysql_connect('localhost', 'root', '') or die("Unable to connect to database.");
+mysql_select_db('test') or die("Unable to select the DB.");
+mysql_query("INSERT INTO files SET file_data='$file_contents'") or die("MySQL Query Error: " . mysql_error() . "<br><br>". "The SQL was: $SQL<br><br>");
+mysql_close();
+echo "File INSERTED into files table successfully.";
