@@ -5,20 +5,23 @@ session_start();
 include_once './db_conn.php';
 
 if(isset($_POST['login'])){
-    $log_user = $_REQUEST['username'];
-    $log_pass = $_REQUEST['password'];
+    $loggedUser = $_REQUEST['username'];
+    $loggedPass = $_REQUEST['password'];
 
-    $sql = "select * from signup_tbl where su_username='$log_user' AND su_password='$log_pass'";
+    $sql = "select * from signup_tbl where su_username='$loggedUser' AND su_password='$loggedPass'";
 
     if($conn->query($sql) > 0){
-        $_SESSION['log_user'] = $log_user; 
+        $_SESSION['loggedUser'] = $loggedUser; 
         header("location: ../pages/home.php");
         ?>
-            <script>
+            <!-- <script>
                 window.alert("Login Successfull");
-            </script>
+            </script> -->
         <?php
         
+    }
+    elseif($conn->query($sql) > 0 and $loggedUser="admin" and $loggedPass="admin"){
+        header("location: ../admin/dashboard.php");
     }
     else{
         ?>

@@ -2,7 +2,7 @@
 
 include_once './db_conn.php';
 
-if(isset($_POST['create'])){
+if(isset($_POST['signup'])){
     $username = $_REQUEST['username'];
     $email = $_REQUEST['email'];
     $password = md5($_REQUEST['password']);
@@ -11,9 +11,9 @@ if(isset($_POST['create'])){
 
     if($conn->query($sql) === TRUE){
         ?>
-        <script>
+        <!-- <script>
             window.alert("Data inserted");
-        </script>
+        </script> -->
         <?php
 
         header("location: ../pages/login.php");

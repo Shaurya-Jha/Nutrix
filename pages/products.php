@@ -1,3 +1,10 @@
+<?php
+include_once '../backend/db_conn.php';
+
+$sql = "Select * from product_tbl";
+$query = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,27 +53,32 @@
     </nav>
 
     <!-- product row -->
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="card mx-2 my-2" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Product name</h5>
-                    <h6 class="card-subtitle mt-2">Rs. Price</h6>
-                    <p class="card-text">Some description about the product</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
 
-            <div class="card mx-2 my-2" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+            <?php
+            while ($row = mysqli_fetch_assoc($query)) {
+            ?>
+                <div class="card m-2" style="width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $row['prod_name'] ?></h5>
+                        <p class="card-text"><?php echo $row['prod_desc'] ?></p>
+                        <a href="#" class="btn btn-primary">Buy</a>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+
+            <!-- <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Product name</h5>
-                    <h6 class="card-subtitle mt-2">Rs. Price</h6>
-                    <p class="card-text">Some description about the product</p>
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +14,12 @@
     <link rel="stylesheet" href="../css/login.css">
 
 </head>
+
 <body>
 
-<?php include_once '../backend/db_conn.php' ?>
+    <?php include_once '../backend/db_conn.php' ?>
 
-    <div class="container d-flex flex-column align-items-center">
+    <!-- <div class="container d-flex flex-column align-items-center">
         <div class="row title-area mt-4 mb-4">
             <div class="col">
                 <h3>Welcome back!!!</h3>
@@ -41,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="row button-section mt-4 mb-4 d-flex align-items-center">
+                <div class="row mt-4 d-flex align-items-center">
                     <div class="col col-sm col-md col-lg">
                         <button class="btn btn-success login" type="submit" name="login">Login</button>
                         <button class="btn btn-danger login" name="login">Login</button>
@@ -49,7 +51,37 @@
                 </div>
             </form>
         </div>
+    </div> -->
+
+    <div class="container d-flex flex-column align-items-center">
+        <div class="row mt-4">
+            <div class="col">
+                <h3>Welcome back!!</h3>
+            </div>
+        </div>
+
+        <form action="../backend/login_action.php" method="post" autocomplete="off">
+            <div class="row mt-4">
+                <div class="col">
+                    <input type="text" name="username" id="" placeholder="Enter username...">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <input type="password" name="password" id="" placeholder="Enter password...">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <button class="btn btn-success" type="submit" name="login">Login</button>
+                    <button class="btn btn-danger" name="signup">Signup</button>
+                </div>
+            </div>
+        </form>
     </div>
-    
+
 </body>
+
 </html>

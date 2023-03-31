@@ -34,19 +34,27 @@ include_once '../backend/db_conn.php';
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="./home.php" class="nav-link active" aria-current="page">Home</a>
+                        <a href="./home.php" class="nav-link" aria-current="page">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="./about.php" class="nav-link active">About</a>
+                        <a href="./about.php" class="nav-link">About</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="./product_page.php" class="nav-link active">Products</a>
+                        <a href="./product_page.php" class="nav-link">Products</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="./login.php" class="nav-link active">LogIn</a>
+                        <?php if (isset($_SESSION["loggedUser"])) {
+                        ?>
+                            <a href="../backend/logout.php" class="nav-link">Logout <?php echo $_SESSION["loggedUser"] ?></a>
+                        <?php
+                        } else {
+                        ?>
+                            <a href="./login.php" class="nav-link">Login</a>
+                        <?php
+                        } ?>
                     </li>
                 </ul>
             </div>
@@ -134,7 +142,7 @@ include_once '../backend/db_conn.php';
     </div>
 
     <?php include './footer.php' ?>
-    
+
     <script src="..\css\bootstrap\js\bootstrap.min.js"></script>
 
 </body>
